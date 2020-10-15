@@ -1,0 +1,71 @@
+Errata for PA3AXA | GPSDO V1.1 Hardware
+---------------------------------------
+
+1 GPS Module Ground Pin 1, connection
+  is missing. Connect the nearest ground.
+
+2 Arduino D8 not connected to 1PPS
+  needs a wire to a 5V PPS from true hole
+  near 74HC4046.
+
+3 10MHZ input 74HC390 add 10nF in series
+  with input pin 1.
+
+4 Cap Multiplier not working as expected.
+  Feel free to fix design. For now
+  
+  Do not mount T1 C13 R10,
+  Connect Collector to Emittor PAD
+  Change 6V LDO to 5V LDO.
+
+
+5 Change R2 and C2 position mislabeld
+  on board. C2 needs to be close to
+  ADC pin.
+
+6 Cut Serial Connection to Arduino PIN16 
+  Needs to be connected to Software Serial PIN xx
+
+
+7 C24, C27, C28, C29, C30 56pf not mounted
+  Copy from refrecence design to cut noise.
+
+8 L1 is a bit to large but will fit.
+
+9 R6, R7 I2C Pull-UP not mounted
+
+
+
+Errata GPSDO V1.1 Software
+---------------------------------------
+
+1 Current version is the orginal made Lars
+  just change A0 to A7 in the sketch. (3x).
+
+2 Set gain parameter to 200 as a starting point
+  for Bliley OCXO NV47A12B2.
+
+3 I2C display not implemented for now, same for
+  rotery connector if it ever will happen.
+
+4 Using USB its possible to command the GPS reciever
+  and the Arduino. They booth and share the RX port for
+  commands. all GPS commands start with $
+
+5 GPS Has lots of options but needs more time to investigate
+  standard settings work, currently always PPS 1s even when
+  GPS is not locked.
+
+6 Arduino Onboard LED on PIN 13 shows locked status Software.
+  But if no GPS is recieved its just locked to free
+  running PPS from GPS module.
+
+
+
+
+
+
+
+
+
+
